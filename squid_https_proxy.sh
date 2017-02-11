@@ -13,7 +13,7 @@ read proxy_password
 echo "Insatll Squid3 and Utilities..."
 
 apt-get -qq update
-apt-get -qq install apache2-utils vim wget -y
+apt-get -qq install apache2-utils vim wget software-properties-common -y
 add-apt-repository ppa:brightbox/squid-ssl -y
 apt-get -qq update
 apt-get -qq install squid3-ssl -y
