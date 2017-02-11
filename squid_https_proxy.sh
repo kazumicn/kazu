@@ -1,3 +1,6 @@
+echo "For non-root user, please run this script with:"
+echo "sudo bash squid_https_proxy.sh"
+
 echo "Go to home directory..."
 cd ~
 
