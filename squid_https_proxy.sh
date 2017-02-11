@@ -5,9 +5,9 @@ echo "Insatll Squid3 and Utilities..."
 
 apt-get update
 apt-get install apache2-utils vim wget -y
-add-apt-repository ppa:brightbox/squid-ssl
+add-apt-repository ppa:brightbox/squid-ssl -y
 apt-get update
-apt-get install squid3-ssl
+apt-get install squid3-ssl -y
 
 echo "Download EFF certbot..."
 wget https://dl.eff.org/certbot-auto
@@ -15,7 +15,7 @@ chmod a+x certbot-auto
 
 echo "Please type the domain name to use:"
 read domain_name
-echo "Please type the your email address(used for certification release/renew/expiry notification etc):
+echo "Please type the your email address(used for certification release/renew/expiry notification etc): "
 read email_address
 
 echo "Run EFF certbot to get a Free Letsencrypt certification..."
