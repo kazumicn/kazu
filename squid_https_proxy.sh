@@ -12,11 +12,11 @@ read proxy_password
 
 echo "Insatll Squid3 and Utilities..."
 
-apt-get update
-apt-get install apache2-utils vim wget -y
+apt-get -qq update
+apt-get -qq install apache2-utils vim wget -y
 add-apt-repository ppa:brightbox/squid-ssl -y
-apt-get update
-apt-get install squid3-ssl -y
+apt-get -qq update
+apt-get -qq install squid3-ssl -y
 
 echo "Download EFF certbot..."
 wget -O certbot-auto https://dl.eff.org/certbot-auto
