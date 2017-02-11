@@ -1,6 +1,15 @@
 echo "Go to home directory..."
 cd ~
 
+echo "Please type the domain name to use for certification request:"
+read domain_name
+echo "Please type the your certification contact email address(used for certification release/renew/expiry notification etc): "
+read email_address
+echo "Please type the proxy user name:"
+read proxy_user
+echo "Please type the proxy user password:"
+read proxy_password
+
 echo "Insatll Squid3 and Utilities..."
 
 apt-get update
@@ -10,26 +19,19 @@ apt-get update
 apt-get install squid3-ssl -y
 
 echo "Download EFF certbot..."
-wget https://dl.eff.org/certbot-auto
+wget -O certbot-auto https://dl.eff.org/certbot-auto
 chmod a+x certbot-auto
-
-echo "Please type the domain name to use:"
-read domain_name
-echo "Please type the your email address(used for certification release/renew/expiry notification etc): "
-read email_address
 
 echo "Run EFF certbot to get a Free Letsencrypt certification..."
 ./certbot-auto certonly -n --standalone --agree-tos -d $domain_name -m $email_address --quiet --no-self-upgrade
 if [ $? -ne 0 ]; then
   echo "Certification fetch failed!"
-  exit(1)
+  exit
 fi
 
 echo "Generate Squid Password..."
 touch /etc/squid3/passwords
-echo "Please type the proxy user name:"
-read proxy_user
-htpasswd /etc/squid3/passwords $proxy_user
+htpasswd -b /etc/squid3/passwords $proxy_user $proxy_password
 
 echo "Copy Squid3 Configuration file..."
 cat > /etc/squid3/squid.conf << END
