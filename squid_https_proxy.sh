@@ -71,4 +71,6 @@ cache_log none
 END
 
 echo "Restart Squid3..."
+sudo service squid3 restart
+
 echo "Setup Done!"
