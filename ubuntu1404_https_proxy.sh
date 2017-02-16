@@ -3,6 +3,12 @@ echo "sudo bash squid_https_proxy.sh"
 
 set -e
 
+Release=$(lsb_release -r)
+if [[ $Release != *14.04* ]]; then
+  echo "This script should only be used on Ubuntu 14.04!"
+  exit 1
+fi
+
 echo "Go to home directory..."
 cd ~
 
